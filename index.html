@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulator Pushdown Automata</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        // Inisialisasi Mermaid
+        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>Tugas Praktikum #3: Mesin PDA</h2>
+        <div class="student-info">
+            <p><strong>Kelompok B07</strong></p>
+            <p><strong>Christina Tan & Puspita Wijayanti Kusuma</strong></p>
+        </div>
+        <p>Pengenalan Bahasa: <strong>L = { aⁿ bⁿ | n ≥ 0 }</strong></p>
+    </div>
+
+    <div class="diagram-section" style="text-align: center; margin-bottom: 2rem; padding: 1rem; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+        <h3 style="margin-top: 0; color: #334155; font-size: 1rem;">State Diagram PDA</h3>
+        <div class="mermaid">
+            stateDiagram-v2
+                direction LR
+                [*] --> q0 : Start (Stack=Z0)
+                
+                q0 --> q0 : Baca 'a' / Push 'A'
+                q0 --> q1 : Baca 'b' / Pop 'A'
+                
+                q1 --> q1 : Baca 'b' / Pop 'A'
+                
+                q0 --> q2 : Baca ε / Stack sisa Z0
+                q1 --> q2 : Baca ε / Stack sisa Z0
+                
+                q2 --> [*] : ACCEPTED (Final)
+        </div>
+    </div>
+
+    <div class="input-group">
+        <input type="text" id="inputString" placeholder="Masukkan string (contoh: aabb)">
+        <button id="btnUji">Uji String</button>
+    </div>
+
+    <div id="resultBox" class="result-box hidden"></div>
+
+    <div id="logSection" class="hidden">
+        <h3>Trace Eksekusi PDA</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Input Dibaca</th>
+                    <th>State</th>
+                    <th>Isi Stack</th>
+                    <th>Aksi / Transisi</th>
+                </tr>
+            </thead>
+            <tbody id="logTableBody"></tbody>
+        </table>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

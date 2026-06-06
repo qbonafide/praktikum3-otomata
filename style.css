@@ -1,0 +1,123 @@
+/* --- Pengaturan Variabel Warna --- */
+:root {
+    --primary: #4F46E5;
+    --success: #10B981;
+    --danger: #EF4444;
+    --bg: #F9FAFB;
+    --text: #1F2937;
+}
+
+/* --- Pengaturan Dasar Body --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+/* --- Tampilan Kontainer Utama --- */
+.container {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 700px;
+}
+
+.header {
+    border-bottom: 2px solid #E5E7EB;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.student-info {
+    font-size: 0.9rem;
+    color: #6B7280;
+    margin-top: 0.5rem;
+}
+
+.student-info p { margin: 0.2rem 0; }
+
+/* --- Tampilan Input & Tombol --- */
+.input-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid #D1D5DB;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #4338CA;
+}
+
+/* --- Tampilan Kotak Hasil --- */
+.result-box {
+    padding: 1rem;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.accepted { 
+    background-color: #D1FAE5; 
+    color: #065F46; 
+    border: 1px solid var(--success); 
+}
+
+.rejected { 
+    background-color: #FEE2E2; 
+    color: #991B1B; 
+    border: 1px solid var(--danger); 
+}
+
+/* --- Tampilan Tabel Log --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+th, td {
+    border: 1px solid #E5E7EB;
+    padding: 0.75rem;
+    text-align: center;
+}
+
+th {
+    background-color: #F3F4F6;
+}
+
+.stack-col {
+    font-family: monospace;
+    letter-spacing: 2px;
+}
+
+/* Class bantuan untuk menyembunyikan elemen */
+.hidden {
+    display: none;
+}

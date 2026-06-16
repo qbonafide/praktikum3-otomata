@@ -1,13 +1,11 @@
 /**
- * Logika Utama Mesin Deterministic Pushdown Automata (DPDA)
- * Mengenali bahasa L = { a^n b^n | n >= 0 }
+ * bahasa L = { a^n b^n | n >= 0 }
  */
 function runPDA(input) {
-    let stack = ['Z0'];  // Z0 adalah simbol awal (bottom of stack)
-    let state = 'q0';    // q0 adalah state awal
-    let logs = [];       // Array untuk menyimpan history eksekusi
+    let stack = ['Z0'];  // Z0 simbol awal
+    let state = 'q0';    // q0 state awal
+    let logs = [];       // Array untuk menyimpan history execution
 
-    // Simpan status sebelum mesin mulai membaca input
     logs.push({ 
         char: '-', 
         state: state, 
@@ -15,19 +13,19 @@ function runPDA(input) {
         action: 'Inisialisasi Mesin (Start)' 
     });
 
-    // Mulai membaca string karakter per karakter
+    // Baca string karakter per karakter
     for (let i = 0; i < input.length; i++) {
         let char = input[i];
         let action = '';
 
-        // --- Aturan Transisi State q0 (Fase membaca 'a') ---
+        // State q0 (Baca 'a')
         if (state === 'q0') {
             if (char === 'a') {
                 stack.push('A'); 
                 action = 'Push A';
             } 
             else if (char === 'b') {
-                // Saat bertemu 'b' pertama kali, cek apakah ada 'a' sebelumnya
+                // Saat ketemu 'b' pertama kali, cek apakah ada 'a' sebelumnya
                 if (stack[stack.length - 1] === 'A') {
                     stack.pop();
                     state = 'q1'; // Pindah state karena sudah mulai baca 'b'
@@ -44,7 +42,7 @@ function runPDA(input) {
             }
         } 
         
-        // --- Aturan Transisi State q1 (Fase membaca 'b') ---
+        // State q1 (Fase membaca 'b')
         else if (state === 'q1') {
             if (char === 'b') {
                 if (stack[stack.length - 1] === 'A') {
@@ -65,10 +63,10 @@ function runPDA(input) {
         logs.push({ char, state, stack: [...stack], action });
     }
 
-    // --- Pengecekan Final (Transisi Epsilon) ---
-    // String sudah habis. Kita cek apakah stack kembali ke kondisi awal (seimbang)
+    // Final Checking
+    // String habis. Cek apakah stack kembali ke kondisi awal
     if (stack.length === 1 && stack[0] === 'Z0') {
-        state = 'q2'; // Berpindah ke Final State
+        state = 'q2'; // Pindah ke Final State
         logs.push({ 
             char: 'ε (Epsilon)', 
             state: state, 
@@ -88,7 +86,7 @@ function runPDA(input) {
 }
 
 /**
- * Fungsi untuk menghubungkan logika PDA dengan HTML (User Interface)
+ * Fungsi untuk menghubungkan logika PDA dengan UI
  */
 function processUI() {
     const inputString = document.getElementById('inputString').value;
@@ -132,7 +130,7 @@ function processUI() {
 // Tambahkan event listener saat tombol diklik
 document.getElementById('btnUji').addEventListener('click', processUI);
 
-// Opsional: Jalankan saat menekan tombol "Enter" di keyboard
+// Jalankan saat menekan tombol Enter di keyboard
 document.getElementById('inputString').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
         processUI();
